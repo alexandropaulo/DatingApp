@@ -21,6 +21,7 @@ namespace DatingApp.API.Controllers
             _context = context;
 
         }
+        [AllowAnonymous]
         [HttpGet]
         //public ActionResult<IEnumerable<string>> Get() retorna uma coleção de srings, retirado do código
         //O comando abaixo retorna respostas http alem de trabalhar com coleções
