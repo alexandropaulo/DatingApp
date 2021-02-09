@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../_services/auth.service';
 export class NavComponent implements OnInit {
   model: any = {};
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {   
   }
@@ -17,19 +18,21 @@ export class NavComponent implements OnInit {
   login() {
     /**console.log(this.model); comando de log retirado*/
     this.authService.login(this.model).subscribe(next => 
-      { console.log("Logged in sucessfully");},
-      error => {console.log(error);}) /** mensagem substituida "Failed to login" */
+      { this.alertify.success("Logged in sucessfully");},
+      error => {this.alertify.error(error);}) /** mensagem substituida "Failed to login" */
 
   }
 
   loggedIn() {
-    const token = localStorage.getItem('token'); /**Pega o token armazenado */
-    return !!token; /**Retorna true ou false de acordo com o valor do campo */
+    /** código retirado depois de criarmos o método no serviço auth
+     * const token = localStorage.getItem('token'); Pega o token armazenado 
+     * return !!token; Retorna true ou false de acordo com o valor do campo */
+    return this.authService.loggedIn();
   }
 
   logout() {
     localStorage.removeItem('token');
-    console.log('Logged out');
+    this.alertify.message('Logged out');
   }
 
 }
