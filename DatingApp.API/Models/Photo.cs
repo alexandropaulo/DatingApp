@@ -11,6 +11,7 @@ namespace DatingApp.API.Models
         
         /*Define se a foto é a principal e que aparecerá a identificação ou cards o usuário*/
         public bool IsMain { get; set; } 
+        public string PublicId { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
         
