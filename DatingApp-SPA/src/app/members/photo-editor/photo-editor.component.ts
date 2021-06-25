@@ -57,6 +57,11 @@ export class PhotoEditorComponent implements OnInit {
           description: res.description,
           isMain: res.isMain
         };
+        if (photo.isMain) { /*Se inserimos a primeira foto e ela é a principal e atualizamos a foto principal na página */
+           this.authService.changeMemberPhoto(photo.url);
+           this.authService.currentUser.photoUrl = photo.url;
+           localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+        }
         this.photos.push(photo); /*Colocando a nova foto no conjunto de fotos da página*/
       }
     }

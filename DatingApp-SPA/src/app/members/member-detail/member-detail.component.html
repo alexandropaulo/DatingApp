@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="class-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user.knownAs}}">
+        <img class="class-img-top img-thumbnail" src="{{user?.photoUrl || '../../../assets/user.png'}}" alt="{{user.knownAs}}">
         <div class="card-body">
           <div>
             <strong>Location:</strong><p>{{user?.city}}, {{user?.country}}</p>
@@ -30,13 +30,13 @@
          <tabset class="member-tabset">
            <tab heading="About {{user?.knownAs}}">
              <h4>Description</h4>
-             <p>{{user?.introduction}}</p>
+             <p>{{user?.introduction || "Not informed!"}}</p>
              <h4>Looking For</h4>
-             <p>{{user?.lookingFor}}</p>
+             <p>{{user?.lookingFor || "Not Informed!"}}</p>
            </tab>
            <tab heading="Interests">
              <h4>Interests</h4>
-             <p>{{user?.interests}}</p>
+             <p>{{user?.interests || "Not Informed!"}}</p>
            </tab>
            <tab heading="Photos">
             <ngx-gallery style="display: inline-block; margin-bottom: 20px;" 
